@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.velddev.xpboosters.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ExperienceOrbEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
