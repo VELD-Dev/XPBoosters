@@ -1,4 +1,7 @@
-# XPBoosters
+<p align="center">
+  <image src="./media/logo.png" height="125" width="125">
+  <h1 align="center">XPBoosters</h1>
+</p>
 
 XPBoosters is a simple mod adding a new player effect and four new potions: **XP Boost** and its potions.
 
