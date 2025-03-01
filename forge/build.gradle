@@ -57,3 +57,7 @@ jar {
             "MixinConfigs": "${mod_id}.mixins.json,${mod_id}.forge.mixins.json"
     ])
 }
+
+base {
+    archivesName = "${mod_name}-${project.name.capitalize()}-${minecraft_version}"
+}
