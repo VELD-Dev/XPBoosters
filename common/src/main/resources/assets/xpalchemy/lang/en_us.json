@@ -1,0 +1,15 @@
+{
+  "effect.xpalchemy.xp_boost_effect": "XP Boost",
+  "effect.xpalchemy.xp_health_debt_effect": "Debt of Experience",
+  "item.minecraft.potion.effect.xp_boost_potion_1": "XP Boost Potion",
+  "item.minecraft.potion.effect.xp_boost_potion_2": "XP Boost Potion",
+  "item.minecraft.potion.effect.xp_boost_potion_3": "XP Boost Potion",
+  "item.minecraft.potion.effect.xp_boost_potion_4": "XP Boost Potion",
+  "item.minecraft.potion.effect.xp_health_debt_potion_1": "Experience Debt Potion",
+  "item.minecraft.potion.effect.xp_health_debt_potion_2": "Experience Debt Potion",
+  "item.minecraft.potion.effect.xp_health_debt_potion_3": "Experience Debt Potion",
+  "item.minecraft.tipped_arrow.effect.xp_boost_potion_1": "Arrow of XP Boost",
+  "item.minecraft.tipped_arrow.effect.xp_boost_potion_2": "Arrow of XP Boost",
+  "item.minecraft.tipped_arrow.effect.xp_boost_potion_3": "Arrow of XP Boost",
+  "item.minecraft.tipped_arrow.effect.xp_boost_potion_4": "Arrow of XP Boost"
+}

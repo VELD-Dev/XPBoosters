@@ -12,11 +12,11 @@
         "sources": "https://github.com/FabricMC/fabric-example-mod"
     },
     "license": "${license}",
-    "icon": "assets/xpboosters/${mod_id}.png",
+    "icon": "assets/xpalchemy/${mod_id}.png",
     "environment": "*",
     "entrypoints": {
         "main": [
-            "com.velddev.xpboosters.XPBoosters"
+            "com.velddev.xpalchemy.XPAlchemy"
         ]
     },
     "mixins": [
