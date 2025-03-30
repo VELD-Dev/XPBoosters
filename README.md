@@ -7,7 +7,7 @@ XP Alchemy is a mod adding new player effects and 7 new potions: **XP Boost** an
 
 **This mod is meant to be used with other mods like Hammer mods and Mending.**
 
-![XPAlchemy](https://cdn.modrinth.com/data/zTbCfijz/images/ee1e1bb4676fd1b7ced15ac612f3b3a949ddd7c3.png)
+![XPAlchemy](https://cdn.modrinth.com/data/zTbCfijz/images/5da1d06b8ebd99709f4ebc27aba82f68bfc0b412.png)
 
 ### Features
 - **XP Boost Potions**:
