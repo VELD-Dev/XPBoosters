@@ -24,7 +24,6 @@ public class XPDebtEffect extends MobEffect {
         if(livingEntity instanceof Player player) {
             player.heal(player.getMaxHealth() - player.getHealth());
             int totalConsumedXp = getTotalConsumedXp(amplifier, player);
-            Constants.LOGGER.info("Consumed XP: {}", totalConsumedXp);
             float absorption = CommonMain.roundToHalf(1 + (float)Math.log10(totalConsumedXp) * 7.06f);
             player.giveExperiencePoints(-totalConsumedXp);
             float baseAbsorption = 0;
@@ -39,11 +38,8 @@ public class XPDebtEffect extends MobEffect {
                 player.setAbsorptionAmount(absorption);
             }
 
-            Constants.LOGGER.info("Absorption Level: {}", absorption);
-
             player.addEffect(new MobEffectInstance(this, 10, amplifier, false, true, true));
             var effect = player.getEffect(this);
-            Constants.LOGGER.info("[SPAWN] XP DEBT EFFECT VISIBLE: {}", effect.showIcon());
         }
     }
 
