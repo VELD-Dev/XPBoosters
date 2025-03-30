@@ -1,7 +1,8 @@
 {
   "effect.xpalchemy.xp_boost_effect": "XP Boost",
-  "effect.xpalchemy.xp_health_debt_effect": "Debt of Experience",
+  "effect.xpalchemy.xp_health_debt_effect": "Experience Debt",
   "item.minecraft.potion.effect.xp_boost_potion_1": "XP Boost Potion",
+  "item.minecraft.potion.effect.xp_boost_potion_1.tooltip": "x2 XP",
   "item.minecraft.potion.effect.xp_boost_potion_2": "XP Boost Potion",
   "item.minecraft.potion.effect.xp_boost_potion_3": "XP Boost Potion",
   "item.minecraft.potion.effect.xp_boost_potion_4": "XP Boost Potion",

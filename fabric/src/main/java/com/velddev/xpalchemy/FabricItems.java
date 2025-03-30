@@ -1,10 +1,13 @@
 package com.velddev.xpalchemy;
 
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistry;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -19,6 +22,7 @@ public class FabricItems {
         Registry.register(BuiltInRegistries.POTION, new ResourceLocation(Constants.MOD_ID, XPPotions.XP_HEALTH_DEBT_LVL2_ID), XPPotions.XP_HEALTH_DEBT_LVL2);
         Registry.register(BuiltInRegistries.POTION, new ResourceLocation(Constants.MOD_ID, XPPotions.XP_HEALTH_DEBT_LVL3_ID), XPPotions.XP_HEALTH_DEBT_LVL3);
 
+        // XP Boost potions brewing recipes
         FabricBrewingRecipeRegistry.registerPotionRecipe(
                 Potions.THICK,
                 Ingredient.of(Items.GLOW_BERRIES),
@@ -36,6 +40,7 @@ public class FabricItems {
                 Ingredient.of(Items.NETHERITE_SCRAP),
                 XPPotions.XP_BOOST_POTION_LVL4);
 
+        // Health Debt potions brewing recipes
         FabricBrewingRecipeRegistry.registerPotionRecipe(
                 Potions.THICK,
                 Ingredient.of(Items.NAUTILUS_SHELL),

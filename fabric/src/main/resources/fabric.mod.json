@@ -1,6 +1,6 @@
 {
     "schemaVersion": 1,
-    "id": "xpboosters",
+    "id": "xpalchemy",
     "version": "${version}",
     "name": "${mod_name}",
     "description": "${description}",
@@ -9,7 +9,7 @@
     ],
     "contact": {
         "homepage": "https://fabricmc.net/",
-        "sources": "https://github.com/FabricMC/fabric-example-mod"
+        "sources": "https://github.com/VELD-Dev/"
     },
     "license": "${license}",
     "icon": "assets/xpalchemy/${mod_id}.png",
@@ -28,9 +28,6 @@
         "fabric": "*",
         "minecraft": "${minecraft_version}",
         "java": ">=17"
-    },
-    "suggests": {
-        "another-mod": "*"
     }
 }
   
