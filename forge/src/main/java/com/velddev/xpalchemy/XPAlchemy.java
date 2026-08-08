@@ -23,6 +23,7 @@ public class XPAlchemy {
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(ForgeItems::RegisterCreativeTabItems);
         MinecraftForge.EVENT_BUS.register(this);
 
         ForgeEffects.RegisterEffects(modEventBus);

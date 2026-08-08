@@ -17,5 +17,6 @@ public class XPAlchemy implements ModInitializer {
 
         FabricEffects.RegisterEffects();
         FabricItems.RegisterPotions();
+        FabricItems.RegisterItems();
     }
 }

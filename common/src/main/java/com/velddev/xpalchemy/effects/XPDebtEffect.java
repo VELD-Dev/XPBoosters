@@ -1,14 +1,13 @@
 package com.velddev.xpalchemy.effects;
 
 import com.velddev.xpalchemy.CommonMain;
-import com.velddev.xpalchemy.Constants;
+import com.velddev.xpalchemy.access.XpDebtHearts;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.player.Player;
 
 import javax.annotation.Nullable;
@@ -24,22 +23,18 @@ public class XPDebtEffect extends MobEffect {
         if(livingEntity instanceof Player player) {
             player.heal(player.getMaxHealth() - player.getHealth());
             int totalConsumedXp = getTotalConsumedXp(amplifier, player);
-            float absorption = CommonMain.roundToHalf(1 + (float)Math.log10(totalConsumedXp) * 7.06f);
+            float xpDebtHearts = getXpDebtHearts(totalConsumedXp);
             player.giveExperiencePoints(-totalConsumedXp);
-            float baseAbsorption = 0;
-            baseAbsorption = player.getAbsorptionAmount();
 
-            if(player.hasEffect(this) && baseAbsorption < absorption) {
-                player.setAbsorptionAmount(absorption);
-            } else if(player.hasEffect(this)){
-                player.setAbsorptionAmount(absorption);
-            } else {
-                absorption += baseAbsorption;
-                player.setAbsorptionAmount(absorption);
-            }
+            // Own pool, separate from vanilla absorption: re-applying XP Debt always
+            // overwrites rather than stacking on top of itself or other absorption sources.
+            ((XpDebtHearts) player).xpalchemy$setXpDebtHearts(xpDebtHearts);
 
-            player.addEffect(new MobEffectInstance(this, 10, amplifier, false, true, true));
-            var effect = player.getEffect(this);
+            // Infinite duration from the start: applyEffectTick below decides when to
+            // remove it based on the hearts pool, so there's no need to self-convert
+            // from a finite duration (which previously meant removing and re-adding
+            // the instance mid-tick, corrupting the entity's active-effects iteration).
+            player.addEffect(new MobEffectInstance(this, -1, amplifier, false, true, true));
         }
     }
 
@@ -48,13 +43,7 @@ public class XPDebtEffect extends MobEffect {
         if(!livingEntity.hasEffect(this))
             return;
 
-        var effect = livingEntity.getEffect(this);
-        if(!effect.isInfiniteDuration()) {
-            livingEntity.removeEffect(this);
-            livingEntity.addEffect(new MobEffectInstance(this, -1, amplifier, false, true, true));
-        }
-
-        if(livingEntity.getAbsorptionAmount() < 0.2f) {
+        if(((XpDebtHearts) livingEntity).xpalchemy$getXpDebtHearts() < 0.2f) {
             livingEntity.removeEffect(this);
         }
     }
@@ -67,6 +56,13 @@ public class XPDebtEffect extends MobEffect {
     @Override
     public boolean isInstantenous() {
         return true;
+    }
+
+    public static float getXpDebtHearts(int totalConsumedXp) {
+        if (totalConsumedXp <= 0) {
+            return 0.0F;
+        }
+        return CommonMain.roundToHalf(1 + (float) Math.log10(totalConsumedXp) * 7.06f);
     }
 
     public static int getTotalConsumedXp(int amplifier, Player player) {
