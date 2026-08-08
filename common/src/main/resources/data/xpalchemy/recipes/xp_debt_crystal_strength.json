@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OBO",
+    "MXM",
+    "OSO"
+  ],
+  "key": {
+    "X": { "item": "xpalchemy:xp_core" },
+    "O": { "item": "minecraft:crying_obsidian" },
+    "M": { "item": "minecraft:magma_cream" },
+    "B": { "item": "minecraft:blaze_rod" },
+    "S": { "item": "minecraft:sculk_catalyst" }
+  },
+  "result": {
+    "item": "xpalchemy:xp_debt_crystal_strength",
+    "count": 1
+  }
+}

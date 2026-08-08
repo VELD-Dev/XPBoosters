@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RNR",
+    "TXT",
+    "HGR"
+  ],
+  "key": {
+    "X": { "item": "xpalchemy:xp_core" },
+    "R": { "item": "minecraft:rotten_flesh"},
+    "N": { "item": "minecraft:nether_wart" },
+    "T": { "item": "minecraft:ghast_tear" },
+    "H": { "item": "minecraft:honey_bottle" },
+    "G": { "item": "minecraft:golden_apple" }
+  },
+  "result": {
+    "item": "xpalchemy:xp_debt_crystal_pv",
+    "count": 1
+  }
+}

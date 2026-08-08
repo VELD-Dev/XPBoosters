@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "TXT",
+    "ACM"
+  ],
+  "key": {
+    "X": { "item": "xpalchemy:xp_core" },
+    "G": { "item": "minecraft:gold_block"},
+    "T": { "item": "minecraft:ghast_tear" },
+    "A": { "item": "minecraft:golden_apple" },
+    "C": { "item": "minecraft:golden_carrot" },
+    "M": { "item": "minecraft:glistering_melon_slice" }
+  },
+  "result": {
+    "item": "xpalchemy:xp_debt_crystal_pv",
+    "count": 1
+  }
+}
