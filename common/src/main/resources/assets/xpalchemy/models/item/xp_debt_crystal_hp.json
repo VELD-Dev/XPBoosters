@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "xpalchemy:item/xp_debt_crystal_pv"
+    "layer0": "xpalchemy:item/xp_debt_crystal_hp"
   }
 }

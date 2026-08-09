@@ -65,10 +65,10 @@ public class XPDebtEffect extends MobEffect {
         return CommonMain.roundToHalf(1 + (float) Math.log10(totalConsumedXp) * 7.06f);
     }
 
-    public static int getTotalConsumedXp(int amplifier, Player player) {
+    public static int getTotalConsumedXp(int consumedLevels, Player player) {
         int baseLevel = player.experienceLevel;
         int baseXp = Math.round(player.experienceProgress * player.getXpNeededForNextLevel());
-        int consumedLevels = Mth.clamp(Math.round(player.experienceLevel * 0.2f * (amplifier + 1)), 0, player.experienceLevel + 1);
+        consumedLevels = Mth.clamp(consumedLevels, 0, player.experienceLevel + 1);
         int totalConsumedXp = baseXp;
         for(int i = 1; i < consumedLevels; i++)
         {

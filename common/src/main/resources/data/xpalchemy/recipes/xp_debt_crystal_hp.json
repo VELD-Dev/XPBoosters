@@ -14,7 +14,7 @@
     "M": { "item": "minecraft:glistering_melon_slice" }
   },
   "result": {
-    "item": "xpalchemy:xp_debt_crystal_pv",
+    "item": "xpalchemy:xp_debt_crystal_hp",
     "count": 1
   }
 }

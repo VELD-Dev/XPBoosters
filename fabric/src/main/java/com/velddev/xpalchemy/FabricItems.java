@@ -37,14 +37,14 @@ public class FabricItems {
     }
 
     public static void RegisterItems() {
-        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Constants.MOD_ID, XPItems.XP_DEBT_CRYSTAL_PV_ID), XPItems.XP_DEBT_CRYSTAL_1);
-        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Constants.MOD_ID, XPItems.XP_DEBT_CRYSTAL_STRENGTH_ID), XPItems.XP_DEBT_CRYSTAL_2);
-        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Constants.MOD_ID, XPItems.XP_DEBT_CRYSTAL_FOOD_ID), XPItems.XP_DEBT_CRYSTAL_3);
+        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Constants.MOD_ID, XPItems.XP_DEBT_CRYSTAL_HP_ID), XPItems.XP_DEBT_CRYSTAL_HP);
+        //Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Constants.MOD_ID, XPItems.XP_DEBT_CRYSTAL_STRENGTH_ID), XPItems.XP_DEBT_CRYSTAL_STRENGTH);
+        //Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Constants.MOD_ID, XPItems.XP_DEBT_CRYSTAL_FOOD_ID), XPItems.XP_DEBT_CRYSTAL_FOOD);
 
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register(entries -> {
-            entries.accept(XPItems.XP_DEBT_CRYSTAL_1);
-            entries.accept(XPItems.XP_DEBT_CRYSTAL_2);
-            entries.accept(XPItems.XP_DEBT_CRYSTAL_3);
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(entries -> {
+            entries.accept(XPItems.XP_DEBT_CRYSTAL_HP);
+            //entries.accept(XPItems.XP_DEBT_CRYSTAL_STRENGTH);
+            //entries.accept(XPItems.XP_DEBT_CRYSTAL_FOOD);
         });
     }
 }

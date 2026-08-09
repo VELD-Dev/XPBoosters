@@ -25,9 +25,9 @@ public class ForgeItems {
         POTIONS_REGISTRY.register(XPPotions.XP_BOOST_POTION_LVL3_ID, () -> XPPotions.XP_BOOST_POTION_LVL3);
         POTIONS_REGISTRY.register(XPPotions.XP_BOOST_POTION_LVL4_ID, () -> XPPotions.XP_BOOST_POTION_LVL4);
 
-        ITEMS_REGISTRY.register(XPItems.XP_DEBT_CRYSTAL_PV_ID, () -> XPItems.XP_DEBT_CRYSTAL_1);
-        ITEMS_REGISTRY.register(XPItems.XP_DEBT_CRYSTAL_STRENGTH_ID, () -> XPItems.XP_DEBT_CRYSTAL_2);
-        ITEMS_REGISTRY.register(XPItems.XP_DEBT_CRYSTAL_FOOD_ID, () -> XPItems.XP_DEBT_CRYSTAL_3);
+        ITEMS_REGISTRY.register(XPItems.XP_DEBT_CRYSTAL_HP_ID, () -> XPItems.XP_DEBT_CRYSTAL_HP);
+        //ITEMS_REGISTRY.register(XPItems.XP_DEBT_CRYSTAL_STRENGTH_ID, () -> XPItems.XP_DEBT_CRYSTAL_STRENGTH);
+        //ITEMS_REGISTRY.register(XPItems.XP_DEBT_CRYSTAL_FOOD_ID, () -> XPItems.XP_DEBT_CRYSTAL_FOOD);
     }
 
     public static void RegisterBrewingRecipes(FMLCommonSetupEvent event) {
@@ -38,10 +38,10 @@ public class ForgeItems {
     }
 
     public static void RegisterCreativeTabItems(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(XPItems.XP_DEBT_CRYSTAL_1);
-            event.accept(XPItems.XP_DEBT_CRYSTAL_2);
-            event.accept(XPItems.XP_DEBT_CRYSTAL_3);
+        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(XPItems.XP_DEBT_CRYSTAL_HP);
+            //event.accept(XPItems.XP_DEBT_CRYSTAL_STRENGTH);
+            //event.accept(XPItems.XP_DEBT_CRYSTAL_FOOD);
         }
     }
 }

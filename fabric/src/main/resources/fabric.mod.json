@@ -17,6 +17,9 @@
     "entrypoints": {
         "main": [
             "com.velddev.xpalchemy.XPAlchemy"
+        ],
+        "client": [
+            "com.velddev.xpalchemy.client.XPAlchemyClient"
         ]
     },
     "mixins": [

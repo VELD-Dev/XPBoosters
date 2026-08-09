@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
@@ -23,33 +24,58 @@ import java.util.List;
 // (delegates straight to XPDebtEffect), but as an item the tooltip can preview
 // the XP cost and hearts gained against the viewing player's current XP before
 // they commit to using it.
-public class XPDebtItem extends Item {
+// 
+// Usage: Alt + Scroll to select levels, then hold right-click to activate with cooldown.
+public class XPDebtHPItem extends Item {
 
-    private final int amplifier;
+    private static final String NBT_SELECTED_LEVELS = "SelectedLevels";
+    public final int cooldown = 5;
 
-    public XPDebtItem(int amplifier, Properties properties) {
+    public XPDebtHPItem(Properties properties) {
         super(properties);
-        this.amplifier = amplifier;
+    }
+
+    public static int getSelectedLevels(ItemStack stack) {
+        return stack.getOrCreateTag().getInt(NBT_SELECTED_LEVELS);
+    }
+
+    public static void setSelectedLevels(ItemStack stack, int levels) {
+        stack.getOrCreateTag().putInt(NBT_SELECTED_LEVELS, Math.max(1, Math.min(levels, 64)));
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
-        int totalConsumedXp = XPDebtEffect.getTotalConsumedXp(this.amplifier, player);
-        if (totalConsumedXp <= 0) {
+        int selectedLevels = getSelectedLevels(stack);
+        
+        if (selectedLevels <= 0) {
             return InteractionResultHolder.fail(stack);
         }
 
         if (!level.isClientSide) {
-            Effects.XP_HEALTH_DEBT.applyInstantenousEffect(player, player, player, this.amplifier, 1.0D);
-            if (!player.getAbilities().instabuild) {
-                stack.shrink(1);
+            int totalConsumedXp = XPDebtEffect.getTotalConsumedXp(selectedLevels, player);
+            if (totalConsumedXp <= 0) {
+                return InteractionResultHolder.fail(stack);
             }
+
+            Effects.XP_HEALTH_DEBT.applyInstantenousEffect(player, player, player, selectedLevels - 1, 1.0D);
+            player.getCooldowns().addCooldown(this, 20*5);  // 5 seconds cooldown
+            player.awardStat(Stats.ITEM_USED.get(this));
+            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1.0F, 1.0F);
         }
 
-        player.awardStat(Stats.ITEM_USED.get(this));
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1.0F, 1.0F);
-        return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
+        player.startUsingItem(hand);
+        return InteractionResultHolder.success(stack);
+    }
+
+    @Override
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.BLOCK;
+    }
+
+    @Override
+    public int getUseDuration(ItemStack stack) {
+        return 72000; // Max hold time (60 seconds)
     }
 
     @Override
@@ -63,13 +89,17 @@ public class XPDebtItem extends Item {
             return;
         }
 
-        int totalConsumedXp = XPDebtEffect.getTotalConsumedXp(this.amplifier, player);
-        if (totalConsumedXp <= 0) {
+        int selectedLevels = getSelectedLevels(stack);
+        tooltip.add(Component.literal("§6§lHold Alt + Scroll§r to select levels").withStyle(ChatFormatting.GOLD));
+        tooltip.add(Component.literal("§eSelected Levels: " + selectedLevels).withStyle(ChatFormatting.YELLOW));
+
+        if (selectedLevels <= 0) {
             tooltip.add(Component.translatable("item.xpalchemy.xp_debt_crystal.tooltip.insufficient").withStyle(ChatFormatting.RED));
             return;
         }
 
-        float hearts = XPDebtEffect.getXpDebtHearts(totalConsumedXp) / 2.0F;
+        int totalConsumedXp = XPDebtEffect.getTotalConsumedXp(selectedLevels, player);
+        float hearts = XPDebtEffect.getXpDebtHearts(totalConsumedXp);
         tooltip.add(Component.translatable("item.xpalchemy.xp_debt_crystal.tooltip.cost", totalConsumedXp).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("item.xpalchemy.xp_debt_crystal.tooltip.hearts", hearts).withStyle(ChatFormatting.GOLD));
     }
