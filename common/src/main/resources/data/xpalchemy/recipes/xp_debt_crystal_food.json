@@ -14,7 +14,7 @@
     "G": { "item": "minecraft:golden_apple" }
   },
   "result": {
-    "item": "xpalchemy:xp_debt_crystal_pv",
+    "item": "xpalchemy:xp_debt_crystal_food",
     "count": 1
   }
 }

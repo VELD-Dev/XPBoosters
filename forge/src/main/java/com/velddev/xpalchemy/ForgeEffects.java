@@ -12,5 +12,7 @@ public class ForgeEffects {
         MOB_EFFECTS_REGISTRY.register(eventBus);
         MOB_EFFECTS_REGISTRY.register(Effects.XP_BOOST_EFFECT_ID, () -> Effects.XP_BOOST_EFFECT);
         MOB_EFFECTS_REGISTRY.register(Effects.XP_HEALTH_DEBT_EFFECT_ID, () -> Effects.XP_HEALTH_DEBT);
+        MOB_EFFECTS_REGISTRY.register(Effects.XP_STRENGTH_DEBT_EFFECT_ID, () -> Effects.XP_STRENGTH_DEBT);
+        MOB_EFFECTS_REGISTRY.register(Effects.XP_FOOD_DEBT_EFFECT_ID, () -> Effects.XP_FOOD_DEBT);
     }
 }

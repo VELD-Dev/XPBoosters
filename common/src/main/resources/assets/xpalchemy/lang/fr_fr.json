@@ -1,7 +1,10 @@
 {
   "effect.xpalchemy.xp_boost_effect": "Boost d'XP",
+  "effect.xpalchemy.xp_food_debt_effect": "Food Debt",
   "effect.xpalchemy.xp_health_debt_effect": "Dette d'Expérience",
+  "effect.xpalchemy.xp_strength_debt_effect": "Strength Debt",
   "item.minecraft.potion.effect.xp_boost_potion_1": "Potion de Boost d'XP",
+  "item.minecraft.potion.effect.xp_boost_potion_1.tooltip": "x2 XP",
   "item.minecraft.potion.effect.xp_boost_potion_2": "Potion de Boost d'XP",
   "item.minecraft.potion.effect.xp_boost_potion_3": "Potion de Boost d'XP",
   "item.minecraft.potion.effect.xp_boost_potion_4": "Potion de Boost d'XP",
@@ -11,5 +14,35 @@
   "item.minecraft.tipped_arrow.effect.xp_boost_potion_1": "Flèche de Boost d'XP",
   "item.minecraft.tipped_arrow.effect.xp_boost_potion_2": "Flèche de Boost d'XP",
   "item.minecraft.tipped_arrow.effect.xp_boost_potion_3": "Flèche de Boost d'XP",
-  "item.minecraft.tipped_arrow.effect.xp_boost_potion_4": "Flèche de Boost d'XP"
+  "item.minecraft.tipped_arrow.effect.xp_boost_potion_4": "Flèche de Boost d'XP",
+
+  "item.xpalchemy.xpcore": "XP Core",
+  "item.xpalchemy.xpcore.tooltip": "Remains of an entity that used to carry XP, just like you.",
+
+  "item.xpalchemy.xp_debt_crystal_food": "Talisman of Hunger",
+  "item.xpalchemy.xp_debt_crystal_food.tooltip.capped": "Capped by remaining debt space",
+  "item.xpalchemy.xp_debt_crystal_food.tooltip.cost": "Cost: %s levels",
+  "item.xpalchemy.xp_debt_crystal_food.tooltip.debt_full": "Debt bar is full",
+  "item.xpalchemy.xp_debt_crystal_food.tooltip.debt_gain": "Fills hunger (or grants Food Debt if full), +%s Food Debt",
+  "item.xpalchemy.xp_debt_crystal_food.tooltip.hint": "Hold Alt + Scroll to select levels",
+  "item.xpalchemy.xp_debt_crystal_food.tooltip.insufficient": "Select at least 1 level",
+  "item.xpalchemy.xp_debt_crystal_food.tooltip.selected_levels": "Selected levels: %s",
+
+  "item.xpalchemy.xp_debt_crystal_hp": "Talisman of Health",
+  "item.xpalchemy.xp_debt_crystal_hp.tooltip.capped": "Capped by remaining debt space",
+  "item.xpalchemy.xp_debt_crystal_hp.tooltip.cost": "Cost: %s levels",
+  "item.xpalchemy.xp_debt_crystal_hp.tooltip.debt_full": "Debt bar is full",
+  "item.xpalchemy.xp_debt_crystal_hp.tooltip.debt_gain": "Heals to full, +%s XP Debt hearts",
+  "item.xpalchemy.xp_debt_crystal_hp.tooltip.hint": "Hold Alt + Scroll to select levels",
+  "item.xpalchemy.xp_debt_crystal_hp.tooltip.insufficient": "Select at least 1 level",
+  "item.xpalchemy.xp_debt_crystal_hp.tooltip.selected_levels": "Selected levels: %s",
+
+  "item.xpalchemy.xp_debt_crystal_strength": "Talisman of Strength",
+  "item.xpalchemy.xp_debt_crystal_strength.tooltip.capped": "Capped by remaining debt space",
+  "item.xpalchemy.xp_debt_crystal_strength.tooltip.cost": "Cost: %s levels",
+  "item.xpalchemy.xp_debt_crystal_strength.tooltip.debt_full": "Debt bar is full",
+  "item.xpalchemy.xp_debt_crystal_strength.tooltip.debt_gain": "Grants Strength Debt, +%s Strength Debt",
+  "item.xpalchemy.xp_debt_crystal_strength.tooltip.hint": "Hold Alt + Scroll to select levels",
+  "item.xpalchemy.xp_debt_crystal_strength.tooltip.insufficient": "Select at least 1 level",
+  "item.xpalchemy.xp_debt_crystal_strength.tooltip.selected_levels": "Selected levels: %s"
 }

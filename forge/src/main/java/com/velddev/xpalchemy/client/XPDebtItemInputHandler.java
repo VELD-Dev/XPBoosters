@@ -1,7 +1,8 @@
 package com.velddev.xpalchemy.client;
 
-import com.velddev.xpalchemy.items.XPDebtHPItem;
+import com.velddev.xpalchemy.items.XPDebtTalismanItem;
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -27,9 +28,9 @@ public class XPDebtItemInputHandler {
         ItemStack offHand = player.getOffhandItem();
 
         ItemStack debtItem = null;
-        if (mainHand.getItem() instanceof XPDebtHPItem) {
+        if (mainHand.getItem() instanceof XPDebtTalismanItem) {
             debtItem = mainHand;
-        } else if (offHand.getItem() instanceof XPDebtHPItem) {
+        } else if (offHand.getItem() instanceof XPDebtTalismanItem) {
             debtItem = offHand;
         }
 
@@ -44,9 +45,9 @@ public class XPDebtItemInputHandler {
             return;
         }
 
-        int currentLevels = XPDebtHPItem.getSelectedLevels(debtItem);
-        int newLevels = (int) (currentLevels + event.getScrollDelta());
-        XPDebtHPItem.setSelectedLevels(debtItem, newLevels);
+        int currentLevels = XPDebtTalismanItem.getSelectedLevels(debtItem);
+        int newLevels = Mth.clamp((int) (currentLevels + event.getScrollDelta()), 0, player.experienceLevel);
+        XPDebtTalismanItem.setSelectedLevels(debtItem, newLevels);
         event.setCanceled(true); // Prevent default scroll behavior
     }
 }

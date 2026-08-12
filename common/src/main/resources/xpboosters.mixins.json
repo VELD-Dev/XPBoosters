@@ -7,10 +7,16 @@
     "mixins": [
         "ExperienceOrbMixin",
         "LivingEntityXpDebtMixin",
-        "PlayerXpDebtMixin"
+        "PlayerXpDebtMixin",
+        "PlayerDebtMixin",
+        "BlockBreakDebtMixin",
+        "DamageDealtDebtMixin",
+        "FoodDataNaturalRegenMixin",
+        "PlayerMiningSpeedDebtMixin"
     ],
     "client": [
-        "client.GuiXpDebtHeartsMixin"
+        "client.GuiXpDebtHeartsMixin",
+        "client.GuiXpDebtBarMixin"
     ],
     "server": [
     ],

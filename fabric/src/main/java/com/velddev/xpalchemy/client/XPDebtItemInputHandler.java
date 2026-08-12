@@ -1,6 +1,6 @@
 package com.velddev.xpalchemy.client;
 
-import com.velddev.xpalchemy.items.XPDebtHPItem;
+import com.velddev.xpalchemy.items.XPDebtTalismanItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -19,7 +19,7 @@ public class XPDebtItemInputHandler {
     public static void register() {
         // Defer initialization until first tick when window is ready
         ClientTickEvents.START_CLIENT_TICK.register(client -> {
-            if (!initialized && client.getWindow() != null) {
+            if (!initialized && client.getWindow().getWindow() != 0L) {
                 setupScrollCallback(client);
                 initialized = true;
             }
@@ -47,9 +47,9 @@ public class XPDebtItemInputHandler {
             ItemStack offHand = player.getOffhandItem();
 
             ItemStack debtItem = null;
-            if (mainHand.getItem() instanceof XPDebtHPItem) {
+            if (mainHand.getItem() instanceof XPDebtTalismanItem) {
                 debtItem = mainHand;
-            } else if (offHand.getItem() instanceof XPDebtHPItem) {
+            } else if (offHand.getItem() instanceof XPDebtTalismanItem) {
                 debtItem = offHand;
             }
 
@@ -57,9 +57,9 @@ public class XPDebtItemInputHandler {
                 return;
             }
 
-            int currentLevels = XPDebtHPItem.getSelectedLevels(debtItem);
+            int currentLevels = XPDebtTalismanItem.getSelectedLevels(debtItem);
             int newLevels = Mth.clamp((int) (currentLevels + yOffset), 0, player.experienceLevel);
-            XPDebtHPItem.setSelectedLevels(debtItem, newLevels);
+            XPDebtTalismanItem.setSelectedLevels(debtItem, newLevels);
             
             // Display in action bar (above hotbar)
             player.displayClientMessage(Component.literal("§eXP Debt: " + newLevels + " Levels"), true);

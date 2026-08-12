@@ -2,16 +2,33 @@ package com.velddev.xpalchemy.mixins;
 
 import com.velddev.xpalchemy.Constants;
 import com.velddev.xpalchemy.Effects;
+import com.velddev.xpalchemy.data.PlayerDebtData;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
 import org.joml.Math;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ExperienceOrb.class)
 public abstract class ExperienceOrbMixin {
+
+    @Shadow
+    private int value;
+
+    // Strength debt counter-effect: collecting XP pays it back 1-for-1,
+    // using the orb's raw value (ignores the mending edge case where some of
+    // it gets diverted to item repair instead of player levels).
+    @Inject(method = "playerTouch", at = @At("HEAD"))
+    private void xpalchemy$reduceStrengthDebtOnXpPickup(Player entity, CallbackInfo ci) {
+        if (!entity.level().isClientSide && entity.takeXpDelay == 0) {
+            PlayerDebtData.reduceDebt(entity, PlayerDebtData.DebtType.STRENGTH, this.value);
+        }
+    }
 
     @ModifyArg(
             method = "playerTouch",

@@ -2,6 +2,7 @@ package com.velddev.xpalchemy.mixins.client;
 
 import com.velddev.xpalchemy.Constants;
 import com.velddev.xpalchemy.access.XpDebtHearts;
+import com.velddev.xpalchemy.data.PlayerDebtData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
@@ -61,6 +62,9 @@ public abstract class GuiXpDebtHeartsMixin {
 
         int left = this.screenWidth / 2 - 91;
         int top = this.screenHeight - 39;
+        if (PlayerDebtData.hasVisibleDebt(player)) {
+            top -= PlayerDebtData.DEBT_BAR_SHIFT_PX;
+        }
         int startSlot = healthSlots + absorptionSlots;
         int xpDebtSlots = Mth.ceil(xpDebtHearts / 2.0F);
 
