@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "xpalchemy:item/xp_debt_crystal_strength"
+    "layer1": "xpalchemy:item/talisman_strength",
+    "layer0": "xpalchemy:item/talisman_chain"
   }
 }

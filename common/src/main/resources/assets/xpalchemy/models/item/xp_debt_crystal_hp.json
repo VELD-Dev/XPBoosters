@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "xpalchemy:item/xp_debt_crystal_hp"
+    "layer1": "xpalchemy:item/talisman_health",
+    "layer0": "xpalchemy:item/talisman_chain"
   }
 }
