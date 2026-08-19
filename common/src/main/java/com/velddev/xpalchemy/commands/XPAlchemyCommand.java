@@ -16,10 +16,7 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.Locale;
 
-// Debug-only commands for the debt system: /xpalchemy debt reset|add|set.
-// Operates on the command's own player (run by an op, or a command block
-// impersonating a player via /execute as). Not meant for normal play - see
-// PlayerDebtData for the gameplay-facing addDebt/reduceDebt.
+// Debug-only commands: /xpalchemy debt reset|add|set
 public class XPAlchemyCommand {
 
     private static final SimpleCommandExceptionType INVALID_DEBT_TYPE =

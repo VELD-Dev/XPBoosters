@@ -9,10 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-// Mining speed isn't attribute-driven in 1.20.1 - vanilla Haste is checked
-// by identity in Player#getDestroySpeed via MobEffectUtil. This mirrors that
-// same multiplier (1 + (amplifier+1)*0.2) for the Strength Debt effect
-// instead of also granting vanilla Haste.
+// Mining speed isn't attribute-driven, mirrors vanilla Haste's multiplier.
 @Mixin(Player.class)
 public abstract class PlayerMiningSpeedDebtMixin {
 

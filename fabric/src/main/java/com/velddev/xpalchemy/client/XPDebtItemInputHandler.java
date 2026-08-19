@@ -17,11 +17,7 @@ public class XPDebtItemInputHandler {
 
     private static boolean initialized = false;
 
-    // glfwSetScrollCallback() *replaces* whatever callback was previously
-    // installed - which, by the time this runs, is vanilla's own
-    // MouseHandler::onScroll (hotbar switching, GUI scroll, spectator, map
-    // zoom, etc). Discarding the return value here (as the original code
-    // did) permanently silences all of that; it must be kept and chained.
+    // glfwSetScrollCallback replaces vanilla's own callback, must chain to it
     private static GLFWScrollCallback previousCallback;
 
     public static void register() {

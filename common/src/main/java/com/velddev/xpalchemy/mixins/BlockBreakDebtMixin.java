@@ -10,9 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-// HP debt counter-effect: successfully breaking a block pays back 0.1 debt.
-// Creative players don't pay it back this way (they never really "worked"
-// for it), matching the instabuild guard used elsewhere in this system.
+// Breaking a block pays back 0.1 HP debt, not in creative
 @Mixin(ServerPlayerGameMode.class)
 public abstract class BlockBreakDebtMixin {
 

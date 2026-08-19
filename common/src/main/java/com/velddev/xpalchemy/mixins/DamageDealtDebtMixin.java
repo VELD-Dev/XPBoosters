@@ -10,11 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-// HP debt counter-effect: dealing damage to any entity pays back debt equal
-// to half the damage dealt. Mixed into LivingEntity#hurt (the victim's side)
-// rather than an attacker-side hook, since it needs to know the damage
-// actually landed (Player#hurt calls super.hurt() so this fires for both
-// mob and player victims).
+// Dealing damage pays back HP debt equal to half the damage dealt
 @Mixin(LivingEntity.class)
 public abstract class DamageDealtDebtMixin {
 

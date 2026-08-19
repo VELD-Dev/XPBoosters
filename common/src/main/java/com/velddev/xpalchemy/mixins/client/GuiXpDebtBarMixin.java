@@ -14,14 +14,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-// The debt bar takes over the HUD row the XP bar used to sit in (right above
-// the hotbar). To make room without drawing on top of anything, the XP bar
-// and the health/armor/food/air row (all packed into renderPlayerHealth as a
-// single Y baseline in vanilla) get shifted up by DEBT_BAR_SHIFT_PX whenever
-// there's debt to show, via @ModifyConstant on their hardcoded screenHeight
-// offsets - each of "32"/"31"/"39" appears exactly once in its method, which
-// is what @ModifyConstant needs to unambiguously match. The bar itself is
-// then drawn at the vacated, unshifted XP-bar position.
+// The debt bar takes the XP bar's HUD row; the XP bar and health/armor/food
+// row above it get shifted up by DEBT_BAR_SHIFT_PX whenever there's debt.
 @Mixin(Gui.class)
 public abstract class GuiXpDebtBarMixin {
     private static final ResourceLocation BARS_TEXTURE = new ResourceLocation("minecraft", "textures/gui/bars.png");

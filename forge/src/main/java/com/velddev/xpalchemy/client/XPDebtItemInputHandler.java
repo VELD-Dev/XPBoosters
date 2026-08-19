@@ -14,12 +14,7 @@ import org.lwjgl.glfw.GLFW;
 @Mod.EventBusSubscriber(modid = "xpboosters", bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class XPDebtItemInputHandler {
 
-    // InputEvent.MouseScrollingEvent only fires when there's no screen open
-    // (unlike ScreenEvent.MouseScrolled, which requires one to even be
-    // constructed - subscribing to that one meant this handler could never
-    // run during normal gameplay). Only cancel it - and thus suppress
-    // vanilla's own hotbar-switch handling - when we actually consume the
-    // scroll ourselves; otherwise let it fall through untouched.
+    // Only fires outside screens, unlike ScreenEvent.MouseScrolled
     @SubscribeEvent
     public static void onMouseScroll(InputEvent.MouseScrollingEvent event) {
         Minecraft client = Minecraft.getInstance();
@@ -53,6 +48,6 @@ public class XPDebtItemInputHandler {
         int currentLevels = XPDebtTalismanItem.getSelectedLevels(debtItem);
         int newLevels = Mth.clamp((int) (currentLevels + event.getScrollDelta()), 0, player.experienceLevel);
         XPDebtTalismanItem.setSelectedLevels(debtItem, newLevels);
-        event.setCanceled(true); // Prevent default scroll behavior
+        event.setCanceled(true);
     }
 }

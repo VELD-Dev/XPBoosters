@@ -5,12 +5,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
-// Single effect standing in for "you're running a Food debt" - replaces
-// vanilla Saturation for the talisman's already-full-hunger case. Tick
-// behaviour mirrors vanilla Saturation's own hardcoded handling
-// (MobEffect#applyEffectTick / InstantenousMobEffect#isDurationEffectTick)
-// exactly, just under our own name/icon instead of overloading the vanilla
-// effect.
+// Stand-in for vanilla Saturation, mirrors its tick behaviour exactly.
 public class XPDebtFoodEffect extends MobEffect {
 
     public XPDebtFoodEffect(MobEffectCategory category, int color) {

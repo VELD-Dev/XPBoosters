@@ -13,15 +13,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-// Backs XpDebtHearts with a pool that is entirely separate from vanilla
-// absorption (LivingEntity#absorptionAmount), so XP Debt hearts can be tracked
-// and refreshed on re-application without touching absorption granted by other
-// effects/items. Damage consumption itself lives in PlayerXpDebtMixin, since
-// Player overrides actuallyHurt entirely (no super call) - this class only
-// holds the field, its sync (SynchedEntityData, same as vanilla health) and
-// its NBT persistence. Synced this way because XPDebtEffect only ever sets it
-// server-side (from an instantaneous effect, which - unlike applyEffectTick -
-// is never mirrored client-side).
+// Backs XpDebtHearts, separate from vanilla absorption. Consumption lives
+// in PlayerXpDebtMixin since Player overrides actuallyHurt without super.
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityXpDebtMixin implements XpDebtHearts {
 

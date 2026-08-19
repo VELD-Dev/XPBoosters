@@ -20,9 +20,7 @@ public abstract class ExperienceOrbMixin {
     @Shadow
     private int value;
 
-    // Strength debt counter-effect: collecting XP pays it back 1-for-1,
-    // using the orb's raw value (ignores the mending edge case where some of
-    // it gets diverted to item repair instead of player levels).
+    // Collecting XP pays back Strength debt 1-for-1
     @Inject(method = "playerTouch", at = @At("HEAD"))
     private void xpalchemy$reduceStrengthDebtOnXpPickup(Player entity, CallbackInfo ci) {
         if (!entity.level().isClientSide && entity.takeXpDelay == 0) {

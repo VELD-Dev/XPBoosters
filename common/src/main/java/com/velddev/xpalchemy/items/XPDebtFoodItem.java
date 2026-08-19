@@ -6,16 +6,8 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 
-// Talisman of Hunger: borrows XP like the other two (1 selected level = 6
-// hunger points - always charged in full, see XPDebtTalismanItem), but what
-// it buys depends on the player's hunger bar. If it isn't full, fills it
-// directly (also capped by the 20-point hunger bar itself). If it's
-// already full, trades the XP for the Food Debt effect instead (a
-// stand-in for vanilla Saturation, see XPDebtFoodEffect), scaled the same
-// logarithmic way Health scales into hearts and Strength scales into buff
-// duration. Food debt is the only type with passive decay (-0.5/sec, see
-// PlayerDebtMixin), so this talisman is meant to be used more often, for
-// less each time, than the Health/Strength ones.
+// Talisman of Hunger: fills the hunger bar if not full, otherwise grants
+// the Food Debt effect (stand-in for Saturation). Food debt decays passively.
 public class XPDebtFoodItem extends XPDebtTalismanItem {
 
     private static final int HUNGER_POINTS_PER_LEVEL = 6;

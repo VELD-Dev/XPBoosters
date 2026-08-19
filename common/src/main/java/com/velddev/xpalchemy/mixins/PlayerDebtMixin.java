@@ -14,11 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-// Backs the three debt pools with SynchedEntityData (same sync mechanism as
-// vanilla health), same pattern as LivingEntityXpDebtMixin for XpDebtHearts.
-// Individual setters here only clamp their own [0,100] range - the cross-type
-// "sum can't exceed 100" rule is enforced one level up, in PlayerDebtData,
-// which is the only place debt is ever added to.
+// Backs the three debt pools with SynchedEntityData, same as vanilla health
 @Mixin(Player.class)
 public abstract class PlayerDebtMixin implements PlayerDebt {
 
@@ -97,9 +93,7 @@ public abstract class PlayerDebtMixin implements PlayerDebt {
         }
     }
 
-    // Food debt is the only type with passive decay (-0.5/sec); HP and
-    // Strength debt only go down through their active counter-effects
-    // (block break/damage dealt, and XP collection, respectively).
+    // Food debt is the only type with passive decay (-0.5/sec)
     @Inject(method = "tick", at = @At("TAIL"))
     private void xpalchemy$tickFoodDebtDecay(CallbackInfo ci) {
         Player self = (Player) (Object) this;

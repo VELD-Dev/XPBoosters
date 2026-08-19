@@ -5,18 +5,8 @@ import com.velddev.xpalchemy.access.XpDebtHearts;
 import com.velddev.xpalchemy.data.PlayerDebtData;
 import net.minecraft.world.entity.player.Player;
 
-// Talisman of Health: borrows XP to heal to full and grant XP Debt hearts
-// (see XpDebtHearts / GuiXpDebtHeartsMixin) on top of vanilla health, capped
-// by the room left in the HP debt pool.
-//
-// Hearts get progressively more expensive the more of them the player
-// already has: the same debtGain buys fewer hearts as xpalchemy$getXpDebtHearts()
-// grows, via a soft-cap efficiency curve (100% at 0 hearts, 50% at
-// HEART_COST_SOFT_CAP hearts, 33% at double that, etc). This keeps stacking
-// Health debt from being strictly better than diversifying into Strength/Food -
-// the HP debt pool still fills at the "sticker" debtGain rate even though the
-// hearts you actually receive taper off, so overinvesting in Health wastes
-// shared pool room for diminishing return.
+// Talisman of Health: heals to full and grants XP Debt hearts.
+// Hearts get more expensive the more the player already has (soft-cap curve).
 public class XPDebtHPItem extends XPDebtTalismanItem {
 
     private static final float HEART_COST_SOFT_CAP = 20.0F; // half-hearts (10 hearts)

@@ -7,11 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-// Player overrides LivingEntity#actuallyHurt entirely without calling super,
-// so the consumption has to live here rather than on a LivingEntity mixin -
-// otherwise damage keeps hitting vanilla health/absorption untouched.
-// XP Debt hearts are consumed before armor/magic reduction and before vanilla
-// absorption, so they act as the first line of defense.
+// XP Debt hearts are consumed before armor/magic reduction and absorption
 @Mixin(Player.class)
 public abstract class PlayerXpDebtMixin {
 

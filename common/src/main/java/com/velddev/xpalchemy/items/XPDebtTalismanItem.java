@@ -18,10 +18,8 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import java.util.List;
 
-// Shared behaviour for all three talismans: pick a number of levels to
-// borrow against (Alt+Scroll, handled client-side by XPDebtItemInputHandler),
-// preview the cost/gain in the tooltip, and on use convert those levels into
-// XP-debt, capped by whatever room is left in the shared 100-point debt pool.
+// Shared behaviour for all three talismans: pick levels via Alt+Scroll,
+// preview cost/gain in the tooltip, convert to XP debt on use.
 public abstract class XPDebtTalismanItem extends Item {
 
     private static final String NBT_SELECTED_LEVELS = "SelectedLevels";
@@ -42,28 +40,12 @@ public abstract class XPDebtTalismanItem extends Item {
 
     protected abstract PlayerDebtData.DebtType getDebtType();
 
-    /**
-     * Applies the talisman's actual effect. {@code selectedLevels} is
-     * exactly what giveExperienceLevels just took - the player always pays
-     * what they selected, in full, no exceptions. {@code debtGain} is
-     * already capped to the room that was actually available, so it may be
-     * less than a full-price use would give - implementations should not
-     * cap it again, just spend it.
-     */
+    // debtGain is already capped to available room, do not cap it again
     protected abstract void applyTalismanEffect(Player player, int selectedLevels, float debtGain);
 
-    /**
-     * Translation key prefix for this talisman's tooltip lines, e.g.
-     * "item.xpalchemy.xp_debt_crystal_hp".
-     */
     protected abstract String tooltipKeyPrefix();
 
-    /**
-     * What the ".tooltip.debt_gain" line shows for {@code debtGain}, in case
-     * the talisman doesn't convert debt 1:1 into its benefit (Health's hearts
-     * get proportionally more expensive the more of them the player already
-     * has - see XPDebtHPItem). Defaults to a straight 1:1 passthrough.
-     */
+    // override when debt does not convert 1:1 into the talisman's benefit
     protected float previewBenefit(Player player, float debtGain) {
         return debtGain;
     }
@@ -92,14 +74,10 @@ public abstract class XPDebtTalismanItem extends Item {
             return InteractionResultHolder.fail(stack);
         }
 
-        // Always charge exactly what was selected - no exceptions - in
-        // whole levels via giveExperienceLevels (same mechanism vanilla
-        // enchanting uses to remove levels), so the tooltip's cost and the
-        // actual deduction are always the same number. Hitting the debt cap
-        // only shrinks the benefit (debtGain, already capped above), never
-        // the cost: overselecting near a full debt bar wastes value instead
-        // of silently charging less than you chose.
+        // Cost never shrinks, only the benefit (cappedGain) does when capped
         if (!level.isClientSide) {
+            // For some reason needs both to be roughly right idk why
+            player.giveExperiencePoints(-consumedXp);
             player.giveExperienceLevels(-selectedLevels);
             PlayerDebtData.addDebt(player, getDebtType(), cappedGain);
             applyTalismanEffect(player, selectedLevels, cappedGain);

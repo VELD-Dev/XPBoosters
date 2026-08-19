@@ -13,11 +13,7 @@ public class XPDebtHealthEffect extends MobEffect {
         super(category, color);
     }
 
-    // Grants XP Debt hearts additively (the HP-debt talisman's effect) and
-    // heals to full. XP consumption and debt bookkeeping happen in the item
-    // (XPDebtHPItem), which already knows the capped amount to grant - this
-    // just applies it and keeps the mob-effect instance (icon + tick-based
-    // auto-removal below) alive.
+    // Heals to full and grants XP Debt hearts additively.
     public void grantHearts(Player player, float amount) {
         if (amount <= 0.0F) {
             return;

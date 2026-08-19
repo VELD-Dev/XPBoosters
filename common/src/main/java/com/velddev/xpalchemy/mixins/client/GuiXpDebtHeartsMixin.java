@@ -17,10 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-// Continues the vanilla health/absorption heart row with XP Debt hearts,
-// exactly like vanilla continues health hearts with absorption hearts: same
-// row, same wrap-at-10 and same dynamic row-height shrink, just picking up
-// at the slot right after the last health/absorption heart.
+// Continues the vanilla health/absorption heart row with XP Debt hearts
 @Mixin(Gui.class)
 public abstract class GuiXpDebtHeartsMixin {
 
